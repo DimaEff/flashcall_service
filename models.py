@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import validator, Field
+from pydantic import validator, Field, PositiveInt
 from pydantic.main import BaseModel
 
 CODE_LENGTH = 4
@@ -16,9 +16,9 @@ def get_supported_countries_codes() -> list:
 
 
 class Call(BaseModel):
-    country_code: int
+    country_code: PositiveInt
     phone_number: str = Field(regex=PHONE_NUMBER_REGEX)
-    code: int
+    code: PositiveInt
 
     @validator('country_code')
     def is_supported_country_code(cls, value: int) -> int:
