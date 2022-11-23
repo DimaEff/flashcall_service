@@ -36,7 +36,7 @@ class Call(BaseModel):
         return value
 
 
-class _CallData:
+class _CallData(BaseModel):
     status: int
     code: str
     phone: str
@@ -46,7 +46,8 @@ class _CallData:
     id: int
 
 
-class CallResponse:
+
+class CallResponse(BaseModel):
     success: bool
     data: _CallData
     message: str or None
