@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Union
 
 from pydantic import validator, Field, PositiveInt
 from pydantic.main import BaseModel
@@ -24,7 +25,8 @@ class Call(BaseModel):
     def is_supported_country_code(cls, value: int) -> int:
         supported_countries = get_supported_countries_codes()
         if value not in supported_countries:
-            raise ValueError(f"This country code: {value} is not supported. You can find supported countries codes on ...")
+            raise ValueError(
+                f"This country code: {value} is not supported. You can find supported countries codes on ...")
 
         return value
 
@@ -42,12 +44,11 @@ class _CallData(BaseModel):
     phone: str
     cost: str
     timeCreate: int
-    timeUpdate: str
+    timeUpdate: int
     id: int
-
 
 
 class CallResponse(BaseModel):
     success: bool
     data: _CallData
-    message: str or None
+    message: Union[str, None]
