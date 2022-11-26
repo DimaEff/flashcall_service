@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import FastAPI
 from pydantic import ValidationError
 
@@ -11,6 +9,6 @@ app = FastAPI(title="Call API")
 
 
 @app.post(FLASHCALL, response_model=CallResponse)
-async def index(payload: Call) -> Union[CallResponse, ValidationError]:
+async def index(payload: Call) -> CallResponse | ValidationError:
     call_response = flash_call(payload)
     return call_response

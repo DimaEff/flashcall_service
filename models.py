@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import Union
 
 from pydantic import validator, Field, PositiveInt
 from pydantic.main import BaseModel
@@ -12,7 +11,7 @@ class SupportedCountriesCodes(Enum):
     Russia = 7
 
 
-def get_supported_countries_codes() -> list:
+def get_supported_countries_codes() -> list[SupportedCountriesCodes]:
     return list(SupportedCountriesCodes._value2member_map_.keys())
 
 
@@ -51,4 +50,4 @@ class _CallData(BaseModel):
 class CallResponse(BaseModel):
     success: bool
     data: _CallData
-    message: Union[str, None]
+    message: str | None
